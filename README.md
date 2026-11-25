@@ -1,3 +1,4 @@
+
 # SmartRecipe – Smart Recipe & Meal Planning Application
 
 A complete native **Android (Java + XML)** application powered by a **Node.js + Express.js REST API** and **MySQL (`smartrecipe_db`)** database.
