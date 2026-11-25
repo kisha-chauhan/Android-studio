@@ -1,0 +1,174 @@
+{
+  "info": {
+    "name": "SmartRecipe REST API",
+    "_postman_id": "smartrecipe-collection-v1",
+    "description": "Complete Postman collection for SmartRecipe Android + Node.js + MySQL project",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test Chef\",\n  \"email\": \"testchef@smartrecipe.com\",\n  \"phone\": \"9876543211\",\n  \"password\": \"Test@123\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/register"
+          }
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"aarav@smartrecipe.com\",\n  \"password\": \"User@123\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/login"
+          }
+        },
+        {
+          "name": "Login Admin",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@smartrecipe.com\",\n  \"password\": \"Admin@123\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/login"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Recipes & What Can I Cook",
+      "item": [
+        {
+          "name": "Get All Recipes (Latest)",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/recipes?sort=latest&user_id=2" }
+        },
+        {
+          "name": "Get Recipe Details",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/recipes/5?user_id=2" }
+        },
+        {
+          "name": "Search Recipes",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/recipes/search?q=Paneer&user_id=2" }
+        },
+        {
+          "name": "What Can I Cook (By Ingredients)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ingredients\": [\"Tomato\", \"Potato\", \"Onion\", \"Cheese\"],\n  \"user_id\": 2\n}"
+            },
+            "url": "{{baseUrl}}/api/recipes/by-ingredients"
+          }
+        },
+        {
+          "name": "Create Recipe",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": 2,\n  \"category_id\": 9,\n  \"name\": \"Garlic Cheese Toast\",\n  \"description\": \"Crispy garlic butter toast topped with melted cheese\",\n  \"preparation_time\": 5,\n  \"cooking_time\": 8,\n  \"servings\": 2,\n  \"instructions\": \"1. Mix butter and minced garlic.\\n2. Spread on bread and top with cheese.\\n3. Toast until golden.\",\n  \"ingredients\": [\n    { \"ingredient_name\": \"Bread\", \"quantity\": \"4\", \"unit\": \"slices\" },\n    { \"ingredient_name\": \"Cheese\", \"quantity\": \"50\", \"unit\": \"g\" },\n    { \"ingredient_name\": \"Butter\", \"quantity\": \"2\", \"unit\": \"tbsp\" },\n    { \"ingredient_name\": \"Garlic\", \"quantity\": \"3\", \"unit\": \"cloves\" }\n  ]\n}"
+            },
+            "url": "{{baseUrl}}/api/recipes"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categories, Favorites, Planner, Shopping & Reviews",
+      "item": [
+        { "name": "Get Categories", "request": { "method": "GET", "url": "{{baseUrl}}/api/categories" } },
+        {
+          "name": "Toggle Favorite",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"user_id\": 2,\n  \"recipe_id\": 2\n}" },
+            "url": "{{baseUrl}}/api/favorites"
+          }
+        },
+        {
+          "name": "Get Favorites",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/api/favorites/2"
+          }
+        },
+        {
+          "name": "Get Meal Plans",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/api/meal-plans/2"
+          }
+        },
+        {
+          "name": "Get Shopping List",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/api/shopping-list/2"
+          }
+        },
+        {
+          "name": "Get Recipe Reviews",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/reviews/recipe/5" }
+        }
+      ]
+    },
+    {
+      "name": "Admin Module",
+      "item": [
+        {
+          "name": "Admin Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/api/admin/dashboard"
+          }
+        },
+        {
+          "name": "Admin Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/api/admin/users"
+          }
+        },
+        {
+          "name": "Admin Get All Reviews",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/api/admin/reviews"
+          }
+        }
+      ]
+    }
+  ]
+}

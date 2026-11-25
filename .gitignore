@@ -1,0 +1,16 @@
+# Environment & secrets
+backend/.env
+*.log
+
+# Node dependencies
+backend/node_modules/
+
+# Android Studio / Gradle build outputs
+SmartRecipe/.gradle/
+SmartRecipe/build/
+SmartRecipe/app/build/
+SmartRecipe/local.properties
+SmartRecipe/.idea/
+*.iml
+.DS_Store
+Thumbs.db

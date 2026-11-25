@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SmartRecipe</string>
+    <string name="app_tagline">Cook Smart with What You Have</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_favorites">Favorites</string>
+    <string name="nav_meal_planner">Meal Planner</string>
+    <string name="nav_profile">Profile</string>
+
+    <string name="login_title">Welcome Back</string>
+    <string name="login_subtitle">Sign in to discover recipes &amp; plan meals</string>
+    <string name="register_title">Create Account</string>
+    <string name="register_subtitle">Join SmartRecipe and start cooking smart</string>
+    <string name="what_can_i_cook">What Can I Cook?</string>
+    <string name="what_can_i_cook_desc">Enter ingredients you have at home and find matching recipes instantly</string>
+
+    <string name="empty_recipes">No recipes found.</string>
+    <string name="empty_favorites">No favorite recipes yet. Tap the heart icon on any recipe to save it here.</string>
+    <string name="empty_shopping">Your shopping list is empty. Add items or import missing ingredients from any recipe.</string>
+    <string name="empty_meal_plan">No meals planned for this date. Tap + to plan a meal.</string>
+    <string name="empty_reviews">No reviews yet. Be the first to review this recipe!</string>
+    <string name="no_internet">No internet connection. Please check your network and try again.</string>
+</resources>
